@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar"
 import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
 import { Poppins } from "next/font/google";
@@ -8,9 +9,11 @@ const poppins = Poppins({
   weight: ["400", "700"],
 });
 
-export default function BusPage() {
+export default function Buses() {
   return (
-    <>
+    <div>
+      <Navbar />
+
       <div
         className={`${poppins.className} bg-[url(/Images/bus-mountain.jpg)] bg-cover h-[100vh] p-4`}
       >
@@ -74,6 +77,6 @@ export default function BusPage() {
           </div>
         </main>
       </div>
-    </>
+    </div>
   );
 }
