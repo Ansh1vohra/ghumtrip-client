@@ -12,7 +12,7 @@ export default function BusPage() {
   return (
     <>
       <div
-        className={`${poppins.className} bg-[url(/bus-mountain.jpg)] bg-cover h-[100vh] p-4`}
+        className={`${poppins.className} bg-[url(/Images/bus-mountain.jpg)] bg-cover h-[100vh] p-4`}
       >
         {/* For mobile devices */}
         <nav className='md:hidden flex items-center text-2xl mb-4'>
