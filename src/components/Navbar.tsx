@@ -10,7 +10,7 @@ export default function Navbar() {
   const navItems = [
     { name: "Flight", path: "/flights", icon: "/Icons/flight.png" },
     { name: "Hotel", path: "/hotels", icon: "/Icons/hotel.png" },
-    { name: "Train", path: "/trains", icon: "/Icons/Train.png" },
+    { name: "Train", path: "/trains", icon: "/Icons/train.png" },
     { name: "Bus", path: "/buses", icon: "/Icons/bus.png" },
     { name: "Packages", path: "/packages", icon: "/Icons/package.png" },
   ];

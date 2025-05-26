@@ -41,13 +41,7 @@ export default function CleartripFlightSearch() {
   return (
     <div className="bg-[#fafbfc]">
       <Navbar />
-      <section className="pt-10 pb-5 flex gap-4"
-        style={{
-          backgroundImage: "url('/images/flight.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat"
-        }}
+            <section className="pt-10 pb-5 flex gap-4  bg-[url(/Images/flight.jpg)] bg-cover"
       >
         <div className="md:w-2/3 max-md:w-11/12 mx-auto max-w-5xl">
           <h1 className="text-3xl font-bold">Search Flights</h1>
