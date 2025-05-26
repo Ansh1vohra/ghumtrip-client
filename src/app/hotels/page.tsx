@@ -1,4 +1,3 @@
-
 "use client";
 import { useState } from 'react';
 import Navbar from "@/components/Navbar";
@@ -151,71 +150,74 @@ export default function Hotels() {
           <p className="text-gray-600">With Ghumtrip, booking a hotel online doesn't get simpler</p>
         </header>
 
-        {/* Search Form */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">City/Locality/Hotel</label>
-              <input
-                type="text"
-                name="location"
-                value={searchParams.location}
-                onChange={handleInputChange}
-                className="w-full p-2 border border-gray-300 rounded-md"
-                placeholder="Enter city, locality or hotel name"
-                required
-              />
-            </div>
+        {/* Search Form - Modified width and centering */}
+        <div className="flex justify-center mb-8">
+          <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-4xl">
+            <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">City/Locality/Hotel</label>
+                <input
+                  type="text"
+                  name="location"
+                  value={searchParams.location}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  placeholder="Enter city, locality or hotel name"
+                  required
+                />
+              </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Check-in</label>
-              <input
-                type="date"
-                name="checkIn"
-                value={searchParams.checkIn}
-                onChange={handleInputChange}
-                className="w-full p-2 border border-gray-300 rounded-md"
-                required
-              />
-            </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Check-in</label>
+                <input
+                  type="date"
+                  name="checkIn"
+                  value={searchParams.checkIn}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  required
+                />
+              </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Check-out</label>
-              <input
-                type="date"
-                name="checkOut"
-                value={searchParams.checkOut}
-                onChange={handleInputChange}
-                className="w-full p-2 border border-gray-300 rounded-md"
-                required
-              />
-            </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Check-out</label>
+                <input
+                  type="date"
+                  name="checkOut"
+                  value={searchParams.checkOut}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  required
+                />
+              </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Guests</label>
-              <select
-                name="guests"
-                value={searchParams.guests}
-                onChange={handleInputChange}
-                className="w-full p-2 border border-gray-300 rounded-md"
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Guests</label>
+                <select
+                  name="guests"
+                  value={searchParams.guests}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                >
+                  {[1, 2, 3, 4, 5, 6].map((num) => (
+                    <option key={num} value={num}>
+                      {num} {num === 1 ? 'Guest' : 'Guests'}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <button
+                type="submit"
+                className="md:col-span-4 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
               >
-                {[1, 2, 3, 4, 5, 6].map((num) => (
-                  <option key={num} value={num}>
-                    {num} {num === 1 ? 'Guest' : 'Guests'}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <button
-              type="submit"
-              className="md:col-span-4 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
-            >
-              Search Hotels
-            </button>
-          </form>
+                Search Hotels
+              </button>
+            </form>
+          </div>
         </div>
 
+        {/* Rest of the code remains the same */}
         {/* Offers Section */}
         <div className="mb-8">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">Special Offers on Hotel Bookings</h2>
