@@ -147,7 +147,7 @@ export default function Hotels() {
         {/* Header */}
         <header className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Book Hotels Online</h1>
-          <p className="text-gray-600">With Ghumtrip, booking a hotel online doesn't get simpler</p>
+          <p className="text-gray-600">With Ghumtrip, booking a hotel online doesn&apos;t get simpler</p>
         </header>
 
         {/* Search Form - Modified width and centering */}

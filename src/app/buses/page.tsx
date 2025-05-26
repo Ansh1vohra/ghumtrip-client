@@ -71,7 +71,7 @@ export default function Buses() {
               getaway or a long vacation, you can always find a deal to help
               stretch your travel budget. Be sure to regularly check the app for
               the latest online bus reservation deals. With these offers, you
-              can feel confident that you're starting your journey with the best
+              can feel confident that you&apos;re starting your journey with the best
               price, leaving you more to spend on experiences along the way.
             </p>
           </div>
