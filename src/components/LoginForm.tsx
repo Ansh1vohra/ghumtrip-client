@@ -14,7 +14,7 @@ export default function LoginForm() {
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
-        (formRef.current || pictureRef) &&
+        (formRef.current || pictureRef.current) &&
         !formRef.current.contains(event.target as Node) &&
         !pictureRef.current.contains(event.target as Node)
       ) {
