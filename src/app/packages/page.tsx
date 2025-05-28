@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -14,6 +15,7 @@ const packages = [
     meals: 'Breakfast Included',
     price: '₹9,999',
     image: '/goa.jpg',
+    slug: 'romantic-goa-getaway',
   },
   {
     title: 'Shimla & Manali Tour',
@@ -22,6 +24,7 @@ const packages = [
     meals: 'All Meals Included',
     price: '₹14,999',
     image: '/manali.jpg',
+    slug: 'shimla-manali-tour',
   },
   {
     title: 'Kerala Backwaters Bliss',
@@ -30,6 +33,7 @@ const packages = [
     meals: 'Houseboat Stay',
     price: '₹12,500',
     image: '/kerala.jpg',
+    slug: 'kerala-backwaters-bliss',
   },
   {
     title: 'Dubai Adventure',
@@ -38,6 +42,7 @@ const packages = [
     meals: 'Breakfast & Dinner',
     price: '₹29,999',
     image: '/Dubai.jpg',
+    slug: 'dubai-adventure',
   },
   {
     title: 'Singapore City Escape',
@@ -46,6 +51,7 @@ const packages = [
     meals: 'All Meals Included',
     price: '₹24,999',
     image: '/Singapore.jpg',
+    slug: 'singapore-city-escape',
   },
   {
     title: 'Amazing Thailand Tour',
@@ -54,6 +60,7 @@ const packages = [
     meals: 'Breakfast Included',
     price: '₹19,999',
     image: '/Thailand.jpg',
+    slug: 'amazing-thailand-tour',
   },
   {
     title: 'Ayodya Temple Tour',
@@ -62,6 +69,7 @@ const packages = [
     meals: 'Breakfast Included',
     price: '₹8,999',
     image: '/Ayodhya.jpg',
+    slug: 'ayodya-temple-tour',
   },
   {
     title: 'Mathura Vrindavan Pilgrimage',
@@ -70,6 +78,7 @@ const packages = [
     meals: 'Breakfast Included',
     price: '₹6,999',
     image: '/Mathura.jpg',
+    slug: 'mathura-vrindavan-pilgrimage',
   },
   {
     title: 'Haridwar Rishikesh Spiritual Retreat',
@@ -78,22 +87,25 @@ const packages = [
     meals: 'Houseboat Stay',
     price: '₹7,500',
     image: '/Haridwar.jpg',
+    slug: 'haridwar-rishikesh-retreat',
   },
-    {
+  {
     title: 'Kedarnath Yatra',
     nights: 3,
     days: 4,
     meals: 'Houseboat Stay',
     price: '₹10,500',
     image: '/KedarNath.jpg',
+    slug: 'kedarnath-yatra',
   },
-    {
+  {
     title: 'Badrinath Yatra',
     nights: 3,
     days: 4,
     meals: 'Houseboat Stay',
     price: '₹10,500',
     image: '/Badrinath.jpg',
+    slug: 'badrinath-yatra',
   },
 ];
 
@@ -104,49 +116,21 @@ export default function PackagesPage() {
   );
 
   return (
-    <div className="px-6 py-8 max-w-7xl mx-auto">
-      {/* Hero Section with Search */}
-      <div className="mb-6 relative h-[400px] rounded-xl overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-cyan-500">
-          <Image
-            src="/background-image.jpg"
-            alt="Travel background"
-            layout="fill"
-            objectFit="cover"
-            className="mix-blend-multiply"
-            priority
-          />
-        </div>
-        
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-6">
-          <div className="max-w-2xl w-full text-center">
-            <div className="space-y-4 mb-8">
-              <h1 className="text-4xl font-bold text-white drop-shadow-lg">
-                A little sun.<br />
-                <span className="text-3xl font-semibold">Lots of Family fun.</span>
-              </h1>
-              <p className="text-xl text-white/90">
-                Up to 40% off<br />
-                <span className="text-lg">for Thailand, Bali & more</span>
-              </p>
-            </div>
-
-            <div className="relative max-w-xl mx-auto">
-              <input
-                type="text"
-                placeholder="Search Destinations..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full p-4 rounded-lg bg-white/95 backdrop-blur-sm border-2 border-white/30 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none text-lg placeholder-gray-600/80"
-              />
-              <span className="absolute right-4 top-4 text-2xl text-gray-500">🔍</span>
-            </div>
-          </div>
-        </div>
+    <div className="bg-gradient-to-b from-blue-100 via-white to-white min-h-screen py-10 px-4">
+      {/* Search Bar */}
+      <div className="relative max-w-xl mx-auto mb-10">
+        <input
+          type="text"
+          placeholder="Search Destinations..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full p-4 rounded-lg bg-white/95 backdrop-blur-sm border-2 border-white/30 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none text-lg placeholder-gray-600/80"
+        />
+        <span className="absolute right-4 top-4 text-2xl text-gray-500">🔍</span>
       </div>
 
-      {/* Packages Slider */}
-      <div className="mb-8">
+      {/* Swiper Carousel */}
+      <div className="mb-12 max-w-6xl mx-auto">
         <Swiper
           modules={[Navigation, Autoplay]}
           navigation
@@ -175,44 +159,39 @@ export default function PackagesPage() {
       </div>
 
       {/* Packages Grid */}
-      <section className="py-12">
+      <section className="py-12 max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-2">Exclusive Travel Packages</h2>
-          <p className="text-gray-500 max-w-xl mx-auto">
-            Choose the best plan for your next adventure
-          </p>
+          <p className="text-gray-500 max-w-xl mx-auto">Choose the best plan for your next adventure</p>
         </div>
 
         <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {filteredPackages.length > 0 ? (
             filteredPackages.map((pkg, index) => (
-              <article
-                key={index}
-                className="rounded-xl border shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="relative h-60 w-full">
-                  <Image
-                    src={pkg.image}
-                    alt={pkg.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-t-xl"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{pkg.title}</h3>
-                  <div className="text-gray-600 space-y-1 mb-4">
-                    <p>{pkg.nights} Nights | {pkg.days} Days</p>
-                    <p>{pkg.meals}</p>
+              <Link key={index} href={`/packages/${pkg.slug}`}>
+                <article className="rounded-xl border shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+                  <div className="relative h-60 w-full">
+                    <Image
+                      src={pkg.image}
+                      alt={pkg.title}
+                      layout="fill"
+                      objectFit="cover"
+                      className="rounded-t-xl"
+                    />
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-bold text-lg text-blue-600">{pkg.price}</span>
-                    <button className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                      Book Now
-                    </button>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2">{pkg.title}</h3>
+                    <div className="text-gray-600 space-y-1 mb-4">
+                      <p>{pkg.nights} Nights | {pkg.days} Days</p>
+                      <p>{pkg.meals}</p>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-lg text-blue-600">{pkg.price}</span>
+                      <span className="text-blue-500 font-medium">View More →</span>
+                    </div>
                   </div>
-                </div>
-              </article>
+                </article>
+              </Link>
             ))
           ) : (
             <p className="text-center col-span-full text-gray-500 py-12">
