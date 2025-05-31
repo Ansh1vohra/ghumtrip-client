@@ -8,15 +8,15 @@ import { MdOutlineClose } from "react-icons/md";
 
 export default function LoginForm() {
   const { isOpen, closeLogin } = useLogin();
-  const formRef = useRef<any>(null);
-  const pictureRef = useRef<any>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+  const pictureRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
         (formRef.current || pictureRef.current) &&
-        !formRef.current.contains(event.target as Node) &&
-        !pictureRef.current.contains(event.target as Node)
+        !formRef.current?.contains(event.target as Node) &&
+        !pictureRef.current?.contains(event.target as Node)
       ) {
         closeLogin();
       }
@@ -98,7 +98,7 @@ export default function LoginForm() {
         </div>
         <div className='mx-4 my-8 text-xs text-center'>
           <p>
-            By proceeding, you agree to Ghumtrip's Privacy Policy, User
+            By proceeding, you agree to Ghumtrip&apos;s Privacy Policy, User
             Agreement and T&Cs.
           </p>
         </div>
