@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { use, useState } from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
 const packages = [
-  {
+ {
     slug: 'romantic-goa-getaway',
     title: 'Romantic Goa Getaway',
     nights: 3,
@@ -26,105 +26,103 @@ const packages = [
     description: 'Snow-covered peaks, scenic drives, and cozy mountain stays await you.'
   },
   {
+    slug: 'kerala-backwaters-bliss',
     title: 'Kerala Backwaters Bliss',
     nights: 4,
     days: 5,
     meals: 'Houseboat Stay',
     price: '₹12,500',
     image: '/kerala.jpg',
-    slug: 'kerala-backwaters-bliss',
     description: 'Cruise through Kerala’s tranquil backwaters on a traditional houseboat, surrounded by lush greenery and coconut palms.'
   },
   {
+    slug: 'dubai-adventure',
     title: 'Dubai Adventure',
     nights: 5,
     days: 6,
     meals: 'Breakfast & Dinner',
     price: '₹29,999',
     image: '/Dubai.jpg',
-    slug: 'dubai-adventure',
     description: 'Experience the thrill of desert safaris, luxury shopping, and iconic skyscrapers in the heart of the UAE.'
   },
   {
+    slug: 'singapore-city-escape',
     title: 'Singapore City Escape',
     nights: 4,
     days: 5,
     meals: 'All Meals Included',
     price: '₹24,999',
     image: '/Singapore.jpg',
-    slug: 'singapore-city-escape',
     description: 'Discover Singapore’s vibrant culture, lush gardens, and futuristic skyline on a perfect city escape.'
   },
   {
+    slug: 'amazing-thailand-tour',
     title: 'Amazing Thailand Tour',
     nights: 5,
     days: 6,
     meals: 'Breakfast Included',
     price: '₹19,999',
     image: '/Thailand.jpg',
-    slug: 'amazing-thailand-tour',
     description: 'Explore the temples, beaches, and street food of Thailand for an unforgettable Southeast Asian adventure.'
   },
   {
+    slug: 'ayodya-temple-tour',
     title: 'Ayodya Temple Tour',
     nights: 3,
     days: 4,
     meals: 'Breakfast Included',
     price: '₹8,999',
     image: '/Ayodhya.jpg',
-    slug: 'ayodya-temple-tour',
     description: 'Visit the sacred city of Ayodhya, rich in religious history and spiritual significance.'
   },
   {
+    slug: 'mathura-vrindavan-pilgrimage',
     title: 'Mathura Vrindavan Pilgrimage',
     nights: 2,
     days: 3,
     meals: 'Breakfast Included',
     price: '₹6,999',
     image: '/Mathura.jpg',
-    slug: 'mathura-vrindavan-pilgrimage',
     description: 'Walk through the legendary towns of Mathura and Vrindavan, immersed in Lord Krishna’s divine pastimes.'
   },
   {
+    slug: 'haridwar-rishikesh-retreat',
     title: 'Haridwar Rishikesh Spiritual Retreat',
     nights: 3,
     days: 4,
     meals: 'Houseboat Stay',
     price: '₹7,500',
     image: '/Haridwar.jpg',
-    slug: 'haridwar-rishikesh-retreat',
     description: 'Rejuvenate your soul with Ganga Aarti in Haridwar and yoga by the riverbanks in Rishikesh.'
   },
   {
+    slug: 'kedarnath-yatra',
     title: 'Kedarnath Yatra',
     nights: 3,
     days: 4,
     meals: 'Houseboat Stay',
     price: '₹10,500',
     image: '/KedarNath.jpg',
-    slug: 'kedarnath-yatra',
     description: 'Embark on a spiritual trek to one of India’s holiest shrines nestled in the Himalayas.'
   },
   {
+    slug: 'badrinath-yatra',
     title: 'Badrinath Yatra',
     nights: 3,
     days: 4,
     meals: 'Houseboat Stay',
     price: '₹10,500',
     image: '/Badrinath.jpg',
-    slug: 'badrinath-yatra',
     description: 'Seek blessings at the sacred Badrinath Temple, surrounded by majestic mountain views and serenity.'
   }
 ];
 
 interface PackageDetailsProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>; // 🚨 it's a Promise now!
 }
 
 export default function PackageDetails({ params }: PackageDetailsProps) {
-  const { slug } = params;
+  const { slug } = use(params); // ✅ use() to unwrap
 
   const pkg = packages.find((p) => p.slug === slug);
 
@@ -132,10 +130,7 @@ export default function PackageDetails({ params }: PackageDetailsProps) {
     notFound();
   }
 
-  // State for booking modal open/close
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-
-  // State for form fields
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -143,21 +138,15 @@ export default function PackageDetails({ params }: PackageDetailsProps) {
     message: '',
   });
 
-  // Handle form input changes
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  // Form submit handler
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     console.log('Booking Data:', { package: pkg?.title, ...formData });
-
-    // For now just alert success and close modal
     alert('Thank you for booking! We will contact you soon.');
     setIsBookingOpen(false);
-
-    // Reset form data
     setFormData({ name: '', email: '', phone: '', message: '' });
   }
 
@@ -192,7 +181,6 @@ export default function PackageDetails({ params }: PackageDetailsProps) {
         Book This Package
       </button>
 
-      {/* Booking Modal */}
       {isBookingOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
@@ -200,7 +188,7 @@ export default function PackageDetails({ params }: PackageDetailsProps) {
         >
           <div
             className="bg-white rounded-lg p-8 w-full max-w-md relative"
-            onClick={(e) => e.stopPropagation()} // Prevent closing modal on clicking inside form
+            onClick={(e) => e.stopPropagation()}
           >
             <h2 className="text-2xl font-bold mb-4">Book: {pkg.title}</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
